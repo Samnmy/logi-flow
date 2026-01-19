@@ -17,18 +17,20 @@ import { CommonModule } from '@angular/common';
         </button>
       </div>
 
-      <div class="flex items-end justify-between h-48 px-4 gap-8">
-        <div *ngFor="let item of data" class="flex flex-col items-center w-full group cursor-pointer">
-           <!-- Tooltip wrapper or just simple bars -->
-           <div class="relative w-full flex items-end justify-center h-full">
-               <div class="w-12 bg-blue-100 rounded-t-lg transition-all duration-300 group-hover:bg-blue-200 relative overflow-hidden" [style.height.%]="100">
-                    <!-- Filled part -->
-                    <div class="absolute bottom-0 w-full bg-blue-600 rounded-t-lg transition-all duration-500 ease-out"
-                         [style.height.%]="(item.value / maxValue) * 100">
-                    </div>
+      <div class="flex items-end justify-evenly h-48 px-2 gap-4">
+        <div *ngFor="let item of data" class="flex flex-col items-center w-full group cursor-pointer h-full">
+           <!-- Bar Wrapper -->
+           <div class="relative w-full flex flex-col justify-end items-center h-full transition-transform duration-300 group-hover:-translate-y-1">
+               <!-- Top Stack (Secondary Value - Light Blue) -->
+               <div class="w-20 bg-blue-100 rounded-t-lg transition-all duration-500 ease-out"
+                    [style.height.%]="(item.value / maxValue) * 30">
+               </div>
+               <!-- Bottom Stack (Main Value - Blue) -->
+               <div class="w-20 bg-blue-600 transition-all duration-500 ease-out shadow-sm"
+                    [style.height.%]="(item.value / maxValue) * 70">
                </div>
            </div>
-           <span class="mt-3 text-sm font-medium text-gray-500">{{ item.region }}</span>
+           <span class="mt-3 text-sm font-medium text-gray-500 group-hover:text-blue-600 transition-colors">{{ item.region }}</span>
         </div>
       </div>
     </div>
